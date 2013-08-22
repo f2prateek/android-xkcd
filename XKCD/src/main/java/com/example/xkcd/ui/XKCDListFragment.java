@@ -1,11 +1,28 @@
+/*
+ * Copyright 2013 Prateek Srivastava (@f2prateek)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.example.xkcd.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.Views;
@@ -14,9 +31,7 @@ import com.example.xkcd.R;
 import com.example.xkcd.XKCDApi;
 import com.example.xkcd.model.XKCDComic;
 import com.example.xkcd.ui.util.BindingAdapter;
-import com.example.xkcd.util.Ln;
 import com.squareup.otto.Subscribe;
-import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -33,24 +48,38 @@ public class XKCDListFragment extends BaseListFragment {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Ln.d("onCreate XKCDListFragment");
     setRetainInstance(true);
   }
 
   @Subscribe public void onComicCountUpdated(ComicCountEvent comicCountEvent) {
-    Ln.d("onComicCountUpdated %d", comicCountEvent.comicCount);
     if (comicCountEvent.comicCount > 0) {
       setListAdapter(new SimpleComicGridAdapter(getActivity(), comicCountEvent.comicCount));
+    }
+  }
+
+  @Override public void onListItemClick(ListView l, View v, int position, long id) {
+    super.onListItemClick(l, v, position, id);
+    XKCDComic comic = (XKCDComic) getListAdapter().getItem(position);
+    bus.post(new OnComicClickedEvent(comic));
+  }
+
+  public static class OnComicClickedEvent {
+    public final XKCDComic xkcdComic;
+
+    public OnComicClickedEvent(XKCDComic xkcdComic) {
+      this.xkcdComic = xkcdComic;
     }
   }
 
   class SimpleComicGridAdapter extends BindingAdapter {
 
     private final int comicCount;
+    private final SparseArray<XKCDComic> comicsCache;
 
-    public SimpleComicGridAdapter(Context context, int comicCount) {
+    SimpleComicGridAdapter(Context context, int comicCount) {
       super(context);
       this.comicCount = comicCount;
+      comicsCache = new SparseArray<XKCDComic>(comicCount);
     }
 
     @Override public View newView(LayoutInflater inflater, int type, ViewGroup parent) {
@@ -65,7 +94,7 @@ public class XKCDListFragment extends BaseListFragment {
       long comicNumber = getItemId(position);
       xkcdApi.getComic(comicNumber, new Callback<XKCDComic>() {
         @Override public void success(XKCDComic xkcdComic, Response response) {
-          Picasso.with(getContext()).load(xkcdComic.getImg()).into(holder.thumbnail);
+          comicsCache.put(xkcdComic.getNum(), xkcdComic);
           holder.title.setText(xkcdComic.getSafe_title());
         }
 
@@ -80,15 +109,14 @@ public class XKCDListFragment extends BaseListFragment {
     }
 
     @Override public Object getItem(int position) {
-      return null;
+      return comicsCache.get((int) getItemId(position));
     }
 
     @Override public long getItemId(int position) {
-      return comicCount - position;
+      return getCount() - position;
     }
 
     class ViewHolder {
-      @InjectView(R.id.comic_thumbnail) ImageView thumbnail;
       @InjectView(R.id.comic_title) TextView title;
 
       public ViewHolder(View view) {

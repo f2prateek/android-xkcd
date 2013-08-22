@@ -16,23 +16,9 @@
   ~ limitations under the License.
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="?android:listPreferredItemHeightSmall"
     android:layout_width="match_parent"
-    android:padding="@dimen/default_padding">
-
-  <ImageView
-      android:layout_height="wrap_content"
-      android:layout_width="match_parent"
-      android:id="@+id/comic_thumbnail"
-      android:scaleType="centerCrop"/>
-
-  <TextView
-      android:layout_height="wrap_content"
-      android:layout_width="match_parent"
-      android:layout_gravity="bottom"
-      style="?android:textAppearanceInverse"
-      android:id="@+id/comic_title"
-      android:background="#8000"/>
-
-</FrameLayout>
+    android:gravity="center|left"
+    android:id="@+id/comic_title"
+    android:paddingLeft="@dimen/default_padding"/>
