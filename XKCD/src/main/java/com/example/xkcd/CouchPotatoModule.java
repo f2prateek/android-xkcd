@@ -21,9 +21,9 @@ import com.example.xkcd.service.ComicRetrieverService;
 import com.example.xkcd.ui.BaseActivity;
 import com.example.xkcd.ui.BaseFragment;
 import com.example.xkcd.ui.BaseListFragment;
+import com.example.xkcd.ui.ComicFragment;
 import com.example.xkcd.ui.MainActivity;
-import com.example.xkcd.ui.XKCDComicActivity;
-import com.example.xkcd.ui.XKCDComicFragment;
+import com.example.xkcd.ui.ViewComicActivity;
 import com.example.xkcd.ui.XKCDListFragment;
 import com.squareup.otto.Bus;
 import dagger.Module;
@@ -34,9 +34,9 @@ import retrofit.RestAdapter;
 
 @Module(
     injects = {
-        BaseActivity.class, MainActivity.class, XKCDComicActivity.class, BaseFragment.class,
+        BaseActivity.class, MainActivity.class, ViewComicActivity.class, BaseFragment.class,
         BaseListFragment.class, ComicRetrieverService.class, XKCDListFragment.class,
-        XKCDComicFragment.class
+        ComicFragment.class
     },
     complete = false)
 public class CouchPotatoModule {

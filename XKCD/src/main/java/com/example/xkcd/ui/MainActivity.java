@@ -56,8 +56,8 @@ public class MainActivity extends BaseActivity {
   }
 
   @Subscribe public void onComicClicked(XKCDListFragment.OnComicClickedEvent onComicClickedEvent) {
-    Intent viewComic = new Intent(this, XKCDComicActivity.class);
-    viewComic.putExtra(XKCDComicActivity.COMIC_EXTRA_ARG, onComicClickedEvent.xkcdComic);
+    Intent viewComic = new Intent(this, ViewComicActivity.class);
+    viewComic.putExtra(ViewComicActivity.COMIC_EXTRA_ARG, onComicClickedEvent.comic);
     startActivity(viewComic);
   }
 }

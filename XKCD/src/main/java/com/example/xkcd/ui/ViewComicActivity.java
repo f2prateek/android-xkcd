@@ -19,19 +19,19 @@ package com.example.xkcd.ui;
 import android.os.Bundle;
 import android.view.Menu;
 import com.example.xkcd.R;
-import com.example.xkcd.model.XKCDComic;
+import com.example.xkcd.model.Comic;
 
-public class XKCDComicActivity extends BaseActivity {
+public class ViewComicActivity extends BaseActivity {
 
-  public static final String COMIC_EXTRA_ARG = XKCDComicFragment.COMIC_EXTRA_ARG;
+  public static final String COMIC_EXTRA_ARG = ComicFragment.COMIC_EXTRA_ARG;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     if (savedInstanceState == null) {
-      XKCDComic comic = getIntent().getExtras().getParcelable(COMIC_EXTRA_ARG);
-      XKCDComicFragment fragment = XKCDComicFragment.newInstance(comic);
+      Comic comic = getIntent().getExtras().getParcelable(COMIC_EXTRA_ARG);
+      ComicFragment fragment = ComicFragment.newInstance(comic);
       getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
   }

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,7 +20,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 //An object that represents a single Json object from XKCD. http://xkcd.com/info.0.json
-public class XKCDComic implements Parcelable {
+public class Comic implements Parcelable {
 
   private int month;
   private int num;
@@ -34,7 +34,7 @@ public class XKCDComic implements Parcelable {
   private String title;
   private String day;
 
-  public XKCDComic(int month, int num, String link, int year, String news, String safe_title,
+  public Comic(int month, int num, String link, int year, String news, String safe_title,
       String transcript, String alt, String img, String title, String day) {
     this.month = month;
     this.num = num;
@@ -93,7 +93,7 @@ public class XKCDComic implements Parcelable {
     return day;
   }
 
-  protected XKCDComic(Parcel in) {
+  protected Comic(Parcel in) {
     month = in.readInt();
     num = in.readInt();
     link = in.readString();
@@ -125,18 +125,18 @@ public class XKCDComic implements Parcelable {
     dest.writeString(day);
   }
 
-  public static final Creator<XKCDComic> CREATOR = new Creator<XKCDComic>() {
-    public XKCDComic createFromParcel(Parcel in) {
-      return new XKCDComic(in);
+  public static final Creator<Comic> CREATOR = new Creator<Comic>() {
+    public Comic createFromParcel(Parcel in) {
+      return new Comic(in);
     }
 
-    public XKCDComic[] newArray(int size) {
-      return new XKCDComic[size];
+    public Comic[] newArray(int size) {
+      return new Comic[size];
     }
   };
 
   @Override public String toString() {
-    return "XKCDComic{" +
+    return "Comic{" +
         "month=" + month +
         ", num=" + num +
         ", link='" + link + '\'' +

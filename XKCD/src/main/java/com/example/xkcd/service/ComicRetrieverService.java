@@ -24,7 +24,7 @@ import com.example.xkcd.AppConstansts;
 import com.example.xkcd.ComicCountEvent;
 import com.example.xkcd.XKCDApi;
 import com.example.xkcd.XKCDApplication;
-import com.example.xkcd.model.XKCDComic;
+import com.example.xkcd.model.Comic;
 import com.example.xkcd.util.Ln;
 import com.squareup.otto.Bus;
 import javax.inject.Inject;
@@ -32,7 +32,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class ComicRetrieverService extends Service implements Callback<XKCDComic> {
+public class ComicRetrieverService extends Service implements Callback<Comic> {
 
   @Inject Bus bus;
   @Inject XKCDApi xkcdApi;
@@ -54,9 +54,9 @@ public class ComicRetrieverService extends Service implements Callback<XKCDComic
     return null;
   }
 
-  @Override public void success(XKCDComic xkcdComic, Response response) {
+  @Override public void success(Comic comic, Response response) {
     int old_count = sharedPreferences.getInt(AppConstansts.KEY_COMIC_COUNT, -1);
-    int retrieved_count = xkcdComic.getNum();
+    int retrieved_count = comic.getNum();
     if (old_count < retrieved_count) {
       sharedPreferences.edit().putInt(AppConstansts.KEY_COMIC_COUNT, retrieved_count).commit();
       bus.post(new ComicCountEvent(retrieved_count));

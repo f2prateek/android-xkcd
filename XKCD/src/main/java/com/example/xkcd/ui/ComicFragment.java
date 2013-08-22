@@ -23,19 +23,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import butterknife.InjectView;
 import com.example.xkcd.R;
-import com.example.xkcd.model.XKCDComic;
+import com.example.xkcd.model.Comic;
 import com.squareup.picasso.Picasso;
 
 /** A fragment to display a single comic. */
-public class XKCDComicFragment extends BaseFragment {
+public class ComicFragment extends BaseFragment {
 
   public static final String COMIC_EXTRA_ARG = "com.f2prateek.xkcd.COMIC";
 
   @InjectView(R.id.comic_image) ImageView comic_image;
-  private XKCDComic comic;
+  private Comic comic;
 
-  public static XKCDComicFragment newInstance(XKCDComic comic) {
-    XKCDComicFragment fragment = new XKCDComicFragment();
+  public static ComicFragment newInstance(Comic comic) {
+    ComicFragment fragment = new ComicFragment();
     Bundle args = new Bundle();
     args.putParcelable(COMIC_EXTRA_ARG, comic);
     fragment.setArguments(args);

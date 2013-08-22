@@ -29,7 +29,7 @@ import butterknife.Views;
 import com.example.xkcd.ComicCountEvent;
 import com.example.xkcd.R;
 import com.example.xkcd.XKCDApi;
-import com.example.xkcd.model.XKCDComic;
+import com.example.xkcd.model.Comic;
 import com.example.xkcd.ui.util.BindingAdapter;
 import com.example.xkcd.util.Ln;
 import com.squareup.otto.Subscribe;
@@ -60,27 +60,27 @@ public class XKCDListFragment extends BaseListFragment {
 
   @Override public void onListItemClick(ListView l, View v, int position, long id) {
     super.onListItemClick(l, v, position, id);
-    XKCDComic comic = (XKCDComic) getListAdapter().getItem(position);
+    Comic comic = (Comic) getListAdapter().getItem(position);
     bus.post(new OnComicClickedEvent(comic));
   }
 
   public static class OnComicClickedEvent {
-    public final XKCDComic xkcdComic;
+    public final Comic comic;
 
-    public OnComicClickedEvent(XKCDComic xkcdComic) {
-      this.xkcdComic = xkcdComic;
+    public OnComicClickedEvent(Comic comic) {
+      this.comic = comic;
     }
   }
 
   class SimpleComicGridAdapter extends BindingAdapter {
 
     private final int comicCount;
-    private final SparseArray<XKCDComic> comicsCache;
+    private final SparseArray<Comic> comicsCache;
 
     SimpleComicGridAdapter(Context context, int comicCount) {
       super(context);
       this.comicCount = comicCount;
-      comicsCache = new SparseArray<XKCDComic>(comicCount);
+      comicsCache = new SparseArray<Comic>(comicCount);
     }
 
     @Override public View newView(LayoutInflater inflater, int type, ViewGroup parent) {
@@ -93,10 +93,10 @@ public class XKCDListFragment extends BaseListFragment {
     @Override public void bindView(int position, int type, View view) {
       final ViewHolder holder = (ViewHolder) view.getTag();
       long comicNumber = getItemId(position);
-      xkcdApi.getComic(comicNumber, new Callback<XKCDComic>() {
-        @Override public void success(XKCDComic xkcdComic, Response response) {
-          comicsCache.put(xkcdComic.getNum(), xkcdComic);
-          holder.title.setText(xkcdComic.getSafe_title());
+      xkcdApi.getComic(comicNumber, new Callback<Comic>() {
+        @Override public void success(Comic comic, Response response) {
+          comicsCache.put(comic.getNum(), comic);
+          holder.title.setText(comic.getSafe_title());
         }
 
         @Override public void failure(RetrofitError retrofitError) {

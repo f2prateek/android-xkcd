@@ -16,13 +16,13 @@
 
 package com.example.xkcd;
 
-import com.example.xkcd.model.XKCDComic;
+import com.example.xkcd.model.Comic;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
 
 public interface XKCDApi {
-  @GET("/info.0.json") void getCurrentComic(Callback<XKCDComic> cb);
+  @GET("/info.0.json") void getCurrentComic(Callback<Comic> cb);
 
-  @GET("/{id}/info.0.json") void getComic(@Path("id") long id, Callback<XKCDComic> cb);
+  @GET("/{id}/info.0.json") void getComic(@Path("id") long id, Callback<Comic> cb);
 }
