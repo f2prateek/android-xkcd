@@ -24,7 +24,6 @@ import com.example.xkcd.AppConstansts;
 import com.example.xkcd.ComicCountEvent;
 import com.example.xkcd.R;
 import com.example.xkcd.service.ComicRetrieverService;
-import com.example.xkcd.util.Ln;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 import javax.inject.Inject;
@@ -57,6 +56,8 @@ public class MainActivity extends BaseActivity {
   }
 
   @Subscribe public void onComicClicked(XKCDListFragment.OnComicClickedEvent onComicClickedEvent) {
-    Ln.d("Comic clicked %s", onComicClickedEvent.xkcdComic);
+    Intent viewComic = new Intent(this, XKCDComicActivity.class);
+    viewComic.putExtra(XKCDComicActivity.COMIC_EXTRA_ARG, onComicClickedEvent.xkcdComic);
+    startActivity(viewComic);
   }
 }

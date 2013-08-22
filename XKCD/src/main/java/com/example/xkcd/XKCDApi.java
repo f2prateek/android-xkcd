@@ -23,5 +23,6 @@ import retrofit.http.Path;
 
 public interface XKCDApi {
   @GET("/info.0.json") void getCurrentComic(Callback<XKCDComic> cb);
+
   @GET("/{id}/info.0.json") void getComic(@Path("id") long id, Callback<XKCDComic> cb);
 }

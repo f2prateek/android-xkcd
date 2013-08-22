@@ -18,6 +18,8 @@ package com.example.xkcd.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.view.View;
+import butterknife.Views;
 import com.example.xkcd.XKCDApplication;
 import com.squareup.otto.Bus;
 import javax.inject.Inject;
@@ -33,6 +35,11 @@ public class BaseFragment extends Fragment {
     super.onCreate(savedInstanceState);
     // Perform injection so that when this call returns all dependencies will be available for use.
     ((XKCDApplication) getActivity().getApplication()).inject(this);
+  }
+
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    Views.inject(this, view);
   }
 
   @Override public void onResume() {

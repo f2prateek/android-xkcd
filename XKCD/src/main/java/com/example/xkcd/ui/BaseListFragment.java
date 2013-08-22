@@ -16,7 +16,6 @@
 
 package com.example.xkcd.ui;
 
-import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
 import com.example.xkcd.XKCDApplication;
