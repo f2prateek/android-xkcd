@@ -24,7 +24,6 @@ import android.widget.ImageView;
 import butterknife.InjectView;
 import com.example.xkcd.R;
 import com.example.xkcd.model.XKCDComic;
-import com.example.xkcd.util.Ln;
 import com.squareup.picasso.Picasso;
 
 /** A fragment to display a single comic. */
@@ -46,7 +45,6 @@ public class XKCDComicFragment extends BaseFragment {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     comic = getArguments().getParcelable(COMIC_EXTRA_ARG);
-    Ln.d("Comic got %s", comic);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,

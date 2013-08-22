@@ -31,6 +31,7 @@ import com.example.xkcd.R;
 import com.example.xkcd.XKCDApi;
 import com.example.xkcd.model.XKCDComic;
 import com.example.xkcd.ui.util.BindingAdapter;
+import com.example.xkcd.util.Ln;
 import com.squareup.otto.Subscribe;
 import javax.inject.Inject;
 import retrofit.Callback;
@@ -99,7 +100,7 @@ public class XKCDListFragment extends BaseListFragment {
         }
 
         @Override public void failure(RetrofitError retrofitError) {
-
+          Ln.e(retrofitError.getCause());
         }
       });
     }
