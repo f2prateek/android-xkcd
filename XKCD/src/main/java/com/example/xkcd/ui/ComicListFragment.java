@@ -38,12 +38,12 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class XKCDListFragment extends BaseListFragment {
+public class ComicListFragment extends BaseListFragment {
 
   @Inject XKCDApi xkcdApi;
 
-  public static XKCDListFragment newInstance() {
-    XKCDListFragment fragment = new XKCDListFragment();
+  public static ComicListFragment newInstance() {
+    ComicListFragment fragment = new ComicListFragment();
     return fragment;
   }
 

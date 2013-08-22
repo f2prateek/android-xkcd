@@ -22,9 +22,9 @@ import com.example.xkcd.ui.BaseActivity;
 import com.example.xkcd.ui.BaseFragment;
 import com.example.xkcd.ui.BaseListFragment;
 import com.example.xkcd.ui.ComicFragment;
+import com.example.xkcd.ui.ComicListFragment;
 import com.example.xkcd.ui.MainActivity;
 import com.example.xkcd.ui.ViewComicActivity;
-import com.example.xkcd.ui.XKCDListFragment;
 import com.squareup.otto.Bus;
 import dagger.Module;
 import dagger.Provides;
@@ -35,7 +35,7 @@ import retrofit.RestAdapter;
 @Module(
     injects = {
         BaseActivity.class, MainActivity.class, ViewComicActivity.class, BaseFragment.class,
-        BaseListFragment.class, ComicRetrieverService.class, XKCDListFragment.class,
+        BaseListFragment.class, ComicRetrieverService.class, ComicListFragment.class,
         ComicFragment.class
     },
     complete = false)

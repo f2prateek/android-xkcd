@@ -39,8 +39,8 @@ public class MainActivity extends BaseActivity {
     startService(updateComicService);
 
     if (savedInstanceState == null) {
-      XKCDListFragment gridFragment = XKCDListFragment.newInstance();
-      getFragmentManager().beginTransaction().add(android.R.id.content, gridFragment).commit();
+      ComicListFragment fragment = ComicListFragment.newInstance();
+      getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
   }
 
@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity {
     return new ComicCountEvent(comicCount);
   }
 
-  @Subscribe public void onComicClicked(XKCDListFragment.OnComicClickedEvent onComicClickedEvent) {
+  @Subscribe public void onComicClicked(ComicListFragment.OnComicClickedEvent onComicClickedEvent) {
     Intent viewComic = new Intent(this, ViewComicActivity.class);
     viewComic.putExtra(ViewComicActivity.COMIC_EXTRA_ARG, onComicClickedEvent.comic);
     startActivity(viewComic);
