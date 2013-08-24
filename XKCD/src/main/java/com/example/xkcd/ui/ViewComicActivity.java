@@ -17,8 +17,6 @@
 package com.example.xkcd.ui;
 
 import android.os.Bundle;
-import android.view.Menu;
-import com.example.xkcd.R;
 import com.example.xkcd.model.Comic;
 
 public class ViewComicActivity extends BaseActivity {
@@ -34,11 +32,5 @@ public class ViewComicActivity extends BaseActivity {
       ComicFragment fragment = ComicFragment.newInstance(comic);
       getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.main, menu);
-    return true;
   }
 }
