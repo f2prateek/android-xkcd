@@ -16,7 +16,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.xkcd"
+    package="com.f2prateek.xkcd"
     android:versionCode="1"
     android:versionName="1.0">
 

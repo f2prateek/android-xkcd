@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.ui.base;
+package com.f2prateek.xkcd.ui.base;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.Window;
 import butterknife.Views;
-import com.example.xkcd.XKCDApplication;
+import com.f2prateek.xkcd.XKCDApplication;
 import com.squareup.otto.Bus;
 import javax.inject.Inject;
 

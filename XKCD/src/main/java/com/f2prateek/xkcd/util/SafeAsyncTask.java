@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.util;
+package com.f2prateek.xkcd.util;
 
 import android.os.Handler;
 import android.os.Looper;

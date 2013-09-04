@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.example.xkcd;
+package com.f2prateek.xkcd;
 
 import android.content.res.Resources;
-import com.example.xkcd.service.ComicRetrieverService;
-import com.example.xkcd.ui.ComicListFragment;
-import com.example.xkcd.ui.ComicViewFragment;
-import com.example.xkcd.ui.MainActivity;
-import com.example.xkcd.ui.ViewComicActivity;
-import com.example.xkcd.ui.base.BaseActivity;
-import com.example.xkcd.ui.base.BaseFragment;
-import com.example.xkcd.ui.base.BaseListFragment;
+import com.f2prateek.xkcd.service.ComicRetrieverService;
+import com.f2prateek.xkcd.ui.ComicListFragment;
+import com.f2prateek.xkcd.ui.ComicViewFragment;
+import com.f2prateek.xkcd.ui.MainActivity;
+import com.f2prateek.xkcd.ui.ViewComicActivity;
+import com.f2prateek.xkcd.ui.base.BaseActivity;
+import com.f2prateek.xkcd.ui.base.BaseFragment;
+import com.f2prateek.xkcd.ui.base.BaseListFragment;
 import com.squareup.otto.Bus;
 import dagger.Module;
 import dagger.Provides;

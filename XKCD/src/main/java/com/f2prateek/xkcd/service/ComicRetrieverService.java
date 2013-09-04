@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.service;
+package com.f2prateek.xkcd.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
-import com.example.xkcd.AppConstansts;
-import com.example.xkcd.ComicCountEvent;
-import com.example.xkcd.XKCDApi;
-import com.example.xkcd.XKCDApplication;
-import com.example.xkcd.model.Comic;
-import com.example.xkcd.util.Ln;
+import com.f2prateek.xkcd.AppConstansts;
+import com.f2prateek.xkcd.ComicCountEvent;
+import com.f2prateek.xkcd.XKCDApi;
+import com.f2prateek.xkcd.XKCDApplication;
+import com.f2prateek.xkcd.model.Comic;
+import com.f2prateek.xkcd.util.Ln;
 import com.squareup.otto.Bus;
 import javax.inject.Inject;
 import retrofit.Callback;

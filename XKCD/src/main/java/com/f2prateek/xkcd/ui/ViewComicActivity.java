@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.ui;
+package com.f2prateek.xkcd.ui;
 
 import android.os.Bundle;
-import com.example.xkcd.model.Comic;
-import com.example.xkcd.ui.base.BaseActivity;
+import com.f2prateek.xkcd.model.Comic;
+import com.f2prateek.xkcd.ui.base.BaseActivity;
 
 public class ViewComicActivity extends BaseActivity {
 

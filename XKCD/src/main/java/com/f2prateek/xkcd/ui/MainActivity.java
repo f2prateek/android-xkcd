@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.ui;
+package com.f2prateek.xkcd.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
-import com.example.xkcd.AppConstansts;
-import com.example.xkcd.ComicCountEvent;
-import com.example.xkcd.R;
-import com.example.xkcd.service.ComicRetrieverService;
-import com.example.xkcd.ui.base.BaseActivity;
+import com.f2prateek.xkcd.AppConstansts;
+import com.f2prateek.xkcd.ComicCountEvent;
+import com.f2prateek.xkcd.R;
+import com.f2prateek.xkcd.service.ComicRetrieverService;
+import com.f2prateek.xkcd.ui.base.BaseActivity;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 import javax.inject.Inject;

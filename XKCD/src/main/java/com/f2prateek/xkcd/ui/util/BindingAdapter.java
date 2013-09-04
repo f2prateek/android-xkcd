@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.ui.util;
+package com.f2prateek.xkcd.ui.util;
 
 import android.content.Context;
 import android.view.LayoutInflater;

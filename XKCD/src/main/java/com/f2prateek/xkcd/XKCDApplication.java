@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd;
+package com.f2prateek.xkcd;
 
 import android.app.Application;
 import com.squareup.picasso.Picasso;

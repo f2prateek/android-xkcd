@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.model;
+package com.f2prateek.xkcd.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

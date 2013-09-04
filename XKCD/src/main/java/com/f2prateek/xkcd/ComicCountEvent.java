@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-package com.example.xkcd;
+package com.f2prateek.xkcd;
 
-import com.example.xkcd.model.Comic;
-import retrofit.Callback;
-import retrofit.http.GET;
-import retrofit.http.Path;
+public class ComicCountEvent {
+  public final int comicCount;
 
-public interface XKCDApi {
-  @GET("/info.0.json") void getCurrentComic(Callback<Comic> cb);
-
-  @GET("/{id}/info.0.json") void getComic(@Path("id") long id, Callback<Comic> cb);
+  public ComicCountEvent(int comicCount) {
+    this.comicCount = comicCount;
+  }
 }

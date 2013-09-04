@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.ui;
+package com.f2prateek.xkcd.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -26,13 +26,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.Views;
-import com.example.xkcd.ComicCountEvent;
-import com.example.xkcd.R;
-import com.example.xkcd.XKCDApi;
-import com.example.xkcd.model.Comic;
-import com.example.xkcd.ui.base.BaseListFragment;
-import com.example.xkcd.ui.util.BindingAdapter;
-import com.example.xkcd.util.Ln;
+import com.f2prateek.xkcd.ComicCountEvent;
+import com.f2prateek.xkcd.R;
+import com.f2prateek.xkcd.XKCDApi;
+import com.f2prateek.xkcd.model.Comic;
+import com.f2prateek.xkcd.ui.base.BaseListFragment;
+import com.f2prateek.xkcd.ui.util.BindingAdapter;
+import com.f2prateek.xkcd.util.Ln;
 import com.squareup.otto.Subscribe;
 import javax.inject.Inject;
 import retrofit.Callback;

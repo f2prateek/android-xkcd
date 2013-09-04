@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.util;
+package com.f2prateek.xkcd.util;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
