@@ -24,7 +24,6 @@ import javax.inject.Inject;
 
 /**
  * A base fragment class that automatically injects itself into the {@link dagger.ObjectGraph}.
- * Does NOT setup for ButterKnife.
  */
 public class BaseListFragment extends ListFragment {
   @Inject Bus bus;
