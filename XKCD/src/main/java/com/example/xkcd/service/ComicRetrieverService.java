@@ -61,6 +61,7 @@ public class ComicRetrieverService extends Service implements Callback<Comic> {
       sharedPreferences.edit().putInt(AppConstansts.KEY_COMIC_COUNT, retrieved_count).commit();
       bus.post(new ComicCountEvent(retrieved_count));
     }
+    stopSelf();
   }
 
   @Override public void failure(RetrofitError retrofitError) {
