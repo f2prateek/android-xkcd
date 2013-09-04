@@ -28,15 +28,15 @@ import com.example.xkcd.ui.base.BaseFragment;
 import com.squareup.picasso.Picasso;
 
 /** A fragment to display a single comic. */
-public class ComicFragment extends BaseFragment {
+public class ComicViewFragment extends BaseFragment {
 
   public static final String COMIC_EXTRA_ARG = "com.f2prateek.xkcd.COMIC";
 
   @InjectView(R.id.comic_image) ImageView comic_image;
   private Comic comic;
 
-  public static ComicFragment newInstance(Comic comic) {
-    ComicFragment fragment = new ComicFragment();
+  public static ComicViewFragment newInstance(Comic comic) {
+    ComicViewFragment fragment = new ComicViewFragment();
     Bundle args = new Bundle();
     args.putParcelable(COMIC_EXTRA_ARG, comic);
     fragment.setArguments(args);

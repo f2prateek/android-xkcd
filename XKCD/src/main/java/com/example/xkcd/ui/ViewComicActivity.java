@@ -22,7 +22,7 @@ import com.example.xkcd.ui.base.BaseActivity;
 
 public class ViewComicActivity extends BaseActivity {
 
-  public static final String COMIC_EXTRA_ARG = ComicFragment.COMIC_EXTRA_ARG;
+  public static final String COMIC_EXTRA_ARG = ComicViewFragment.COMIC_EXTRA_ARG;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class ViewComicActivity extends BaseActivity {
 
     if (savedInstanceState == null) {
       Comic comic = getIntent().getExtras().getParcelable(COMIC_EXTRA_ARG);
-      ComicFragment fragment = ComicFragment.newInstance(comic);
+      ComicViewFragment fragment = ComicViewFragment.newInstance(comic);
       getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
   }

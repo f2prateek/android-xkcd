@@ -18,8 +18,8 @@ package com.example.xkcd;
 
 import android.content.res.Resources;
 import com.example.xkcd.service.ComicRetrieverService;
-import com.example.xkcd.ui.ComicFragment;
 import com.example.xkcd.ui.ComicListFragment;
+import com.example.xkcd.ui.ComicViewFragment;
 import com.example.xkcd.ui.MainActivity;
 import com.example.xkcd.ui.ViewComicActivity;
 import com.example.xkcd.ui.base.BaseActivity;
@@ -36,7 +36,7 @@ import retrofit.RestAdapter;
     injects = {
         BaseActivity.class, MainActivity.class, ViewComicActivity.class, BaseFragment.class,
         BaseListFragment.class, ComicRetrieverService.class, ComicListFragment.class,
-        ComicFragment.class
+        ComicViewFragment.class
     },
     complete = false)
 public class CouchPotatoModule {
