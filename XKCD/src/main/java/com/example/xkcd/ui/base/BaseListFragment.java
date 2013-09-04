@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.ui;
+package com.example.xkcd.ui.base;
 
 import android.app.ListFragment;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ import javax.inject.Inject;
  * A base fragment class that automatically injects itself into the {@link dagger.ObjectGraph}.
  */
 public class BaseListFragment extends ListFragment {
-  @Inject Bus bus;
+  @Inject public Bus bus;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

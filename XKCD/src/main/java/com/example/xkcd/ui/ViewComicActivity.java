@@ -18,6 +18,7 @@ package com.example.xkcd.ui;
 
 import android.os.Bundle;
 import com.example.xkcd.model.Comic;
+import com.example.xkcd.ui.base.BaseActivity;
 
 public class ViewComicActivity extends BaseActivity {
 

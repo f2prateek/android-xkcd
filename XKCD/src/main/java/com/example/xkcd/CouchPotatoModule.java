@@ -18,13 +18,13 @@ package com.example.xkcd;
 
 import android.content.res.Resources;
 import com.example.xkcd.service.ComicRetrieverService;
-import com.example.xkcd.ui.BaseActivity;
-import com.example.xkcd.ui.BaseFragment;
-import com.example.xkcd.ui.BaseListFragment;
 import com.example.xkcd.ui.ComicFragment;
 import com.example.xkcd.ui.ComicListFragment;
 import com.example.xkcd.ui.MainActivity;
 import com.example.xkcd.ui.ViewComicActivity;
+import com.example.xkcd.ui.base.BaseActivity;
+import com.example.xkcd.ui.base.BaseFragment;
+import com.example.xkcd.ui.base.BaseListFragment;
 import com.squareup.otto.Bus;
 import dagger.Module;
 import dagger.Provides;

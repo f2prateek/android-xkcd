@@ -24,6 +24,7 @@ import com.example.xkcd.AppConstansts;
 import com.example.xkcd.ComicCountEvent;
 import com.example.xkcd.R;
 import com.example.xkcd.service.ComicRetrieverService;
+import com.example.xkcd.ui.base.BaseActivity;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 import javax.inject.Inject;

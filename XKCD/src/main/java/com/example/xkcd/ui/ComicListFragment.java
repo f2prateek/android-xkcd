@@ -30,6 +30,7 @@ import com.example.xkcd.ComicCountEvent;
 import com.example.xkcd.R;
 import com.example.xkcd.XKCDApi;
 import com.example.xkcd.model.Comic;
+import com.example.xkcd.ui.base.BaseListFragment;
 import com.example.xkcd.ui.util.BindingAdapter;
 import com.example.xkcd.util.Ln;
 import com.squareup.otto.Subscribe;

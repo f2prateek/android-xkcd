@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import butterknife.InjectView;
 import com.example.xkcd.R;
 import com.example.xkcd.model.Comic;
+import com.example.xkcd.ui.base.BaseFragment;
 import com.squareup.picasso.Picasso;
 
 /** A fragment to display a single comic. */

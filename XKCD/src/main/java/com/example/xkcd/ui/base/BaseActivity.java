@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.xkcd.ui;
+package com.example.xkcd.ui.base;
 
 import android.app.Activity;
 import android.os.Bundle;
