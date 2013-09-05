@@ -17,10 +17,8 @@
 package com.f2prateek.xkcd.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
-import com.f2prateek.xkcd.AppConstansts;
 import com.f2prateek.xkcd.ComicCountEvent;
 import com.f2prateek.xkcd.R;
 import com.f2prateek.xkcd.service.ComicRetrieverService;
@@ -28,9 +26,10 @@ import com.f2prateek.xkcd.ui.base.BaseActivity;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class MainActivity extends BaseActivity {
-  @Inject SharedPreferences sharedPreferences;
+  @Inject @Named("comic_count") int comicCount;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,6 @@ public class MainActivity extends BaseActivity {
   }
 
   @Produce public ComicCountEvent produceComicCount() {
-    int comicCount = sharedPreferences.getInt(AppConstansts.KEY_COMIC_COUNT, -1);
     return new ComicCountEvent(comicCount);
   }
 

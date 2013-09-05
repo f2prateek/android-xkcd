@@ -16,6 +16,7 @@
 
 package com.f2prateek.xkcd;
 
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import com.f2prateek.xkcd.service.ComicRetrieverService;
 import com.f2prateek.xkcd.ui.ComicListFragment;
@@ -47,6 +48,10 @@ public class CouchPotatoModule {
 
   @Provides @Named("default_animation_time") int provideDefaultAnimationTime(Resources resources) {
     return resources.getInteger(R.integer.config_defaultAnimationTime);
+  }
+
+  @Provides @Named("comic_count") int provideComicCount(SharedPreferences sharedPreferences) {
+    return sharedPreferences.getInt(AppConstansts.KEY_COMIC_COUNT, -1);
   }
 
   @Provides @Singleton XKCDApi provideXKCDApi() {
