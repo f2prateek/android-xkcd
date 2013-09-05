@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import com.f2prateek.xkcd.ComicCountEvent;
 import com.f2prateek.xkcd.R;
-import com.f2prateek.xkcd.service.ComicRetrieverService;
 import com.f2prateek.xkcd.ui.base.BaseActivity;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
@@ -34,9 +33,6 @@ public class MainActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    Intent updateComicService = new Intent(this, ComicRetrieverService.class);
-    startService(updateComicService);
 
     if (savedInstanceState == null) {
       ComicListFragment fragment = ComicListFragment.newInstance();

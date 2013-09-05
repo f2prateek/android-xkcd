@@ -17,6 +17,8 @@
 package com.f2prateek.xkcd;
 
 import android.app.Application;
+import android.content.Intent;
+import com.f2prateek.xkcd.service.ComicRetrieverService;
 import com.squareup.picasso.Picasso;
 import dagger.ObjectGraph;
 import java.util.Arrays;
@@ -30,6 +32,9 @@ public class XKCDApplication extends Application {
     applicationGraph = ObjectGraph.create(getModules().toArray());
 
     Picasso.with(this).setDebugging(BuildConfig.DEBUG);
+
+    Intent updateComicService = new Intent(this, ComicRetrieverService.class);
+    startService(updateComicService);
   }
 
   protected List<Object> getModules() {
