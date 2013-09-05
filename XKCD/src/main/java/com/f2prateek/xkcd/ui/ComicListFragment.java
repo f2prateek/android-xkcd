@@ -22,6 +22,7 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
@@ -34,6 +35,7 @@ import com.f2prateek.xkcd.ui.base.BaseListFragment;
 import com.f2prateek.xkcd.ui.util.BindingAdapter;
 import com.f2prateek.xkcd.util.Ln;
 import com.squareup.otto.Subscribe;
+import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -97,6 +99,7 @@ public class ComicListFragment extends BaseListFragment {
       xkcdApi.getComic(comicNumber, new Callback<Comic>() {
         @Override public void success(Comic comic, Response response) {
           comicsCache.put(comic.getNum(), comic);
+          Picasso.with(getContext()).load(comic.getImg()).into(holder.comic_image);
           holder.title.setText(comic.getSafe_title());
         }
 
@@ -119,6 +122,7 @@ public class ComicListFragment extends BaseListFragment {
     }
 
     class ViewHolder {
+      @InjectView(R.id.comic_image) ImageView comic_image;
       @InjectView(R.id.comic_title) TextView title;
 
       public ViewHolder(View view) {
