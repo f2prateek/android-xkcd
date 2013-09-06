@@ -25,7 +25,9 @@ import butterknife.InjectView;
 import com.f2prateek.xkcd.R;
 import com.f2prateek.xkcd.model.Comic;
 import com.f2prateek.xkcd.ui.base.BaseFragment;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /** A fragment to display a single comic. */
 public class ComicViewFragment extends BaseFragment {
@@ -34,6 +36,7 @@ public class ComicViewFragment extends BaseFragment {
 
   @InjectView(R.id.comic_image) ImageView comic_image;
   private Comic comic;
+  private PhotoViewAttacher photoViewAttacher;
 
   public static ComicViewFragment newInstance(Comic comic) {
     ComicViewFragment fragment = new ComicViewFragment();
@@ -55,6 +58,16 @@ public class ComicViewFragment extends BaseFragment {
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    Picasso.with(getActivity()).load(comic.getImg()).into(comic_image);
+    photoViewAttacher = new PhotoViewAttacher(comic_image);
+    Picasso.with(getActivity()).load(comic.getImg()).into(comic_image, new Callback() {
+
+      @Override public void onSuccess() {
+        photoViewAttacher.update();
+      }
+
+      @Override public void onError() {
+
+      }
+    });
   }
 }
