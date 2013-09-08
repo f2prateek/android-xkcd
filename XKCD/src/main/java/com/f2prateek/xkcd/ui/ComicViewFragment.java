@@ -37,8 +37,8 @@ public class ComicViewFragment extends BaseFragment {
 
   public static final String COMIC_EXTRA_ARG = "com.f2prateek.xkcd.COMIC";
 
-  @Inject ActivityTitleController titleController;
   @Inject @ForActivity Context context;
+  @Inject ActivityTitleController titleController;
   @InjectView(R.id.comic_image) ImageView comic_image;
   private Comic comic;
 

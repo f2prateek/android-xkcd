@@ -19,7 +19,7 @@ package com.f2prateek.xkcd;
 import android.app.Application;
 import android.content.Intent;
 import com.f2prateek.xkcd.dagger.AndroidModule;
-import com.f2prateek.xkcd.dagger.CouchPotatoModule;
+import com.f2prateek.xkcd.dagger.XKCDModule;
 import com.f2prateek.xkcd.service.ComicRetrieverService;
 import com.squareup.otto.Produce;
 import com.squareup.picasso.Picasso;
@@ -46,7 +46,7 @@ public class XKCDApplication extends Application {
   }
 
   protected List<Object> getModules() {
-    return Arrays.<Object>asList(new AndroidModule(this), new CouchPotatoModule());
+    return Arrays.<Object>asList(new AndroidModule(this), new XKCDModule());
   }
 
   @Produce public ComicCountEvent produceComicCount() {

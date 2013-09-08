@@ -28,7 +28,7 @@ import javax.inject.Singleton;
  * A module for Android-specific dependencies which require a {@link android.content.Context} or
  * {@link android.app.Application} to create.
  */
-@Module(library = true)
+@Module(complete = true, library = true)
 public class AndroidModule {
   private final XKCDApplication application;
 
@@ -40,7 +40,7 @@ public class AndroidModule {
     return application;
   }
 
-  @Provides @Singleton SharedPreferences provideSharedPreferences() {
+  @Provides @Singleton @ForApplication SharedPreferences provideSharedPreferences() {
     return PreferenceManager.getDefaultSharedPreferences(application);
   }
 }

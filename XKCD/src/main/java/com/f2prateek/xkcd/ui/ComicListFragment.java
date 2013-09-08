@@ -110,7 +110,7 @@ public class ComicListFragment extends BaseListFragment {
       return comicCount;
     }
 
-    @Override public Object getItem(int position) {
+    @Override public Comic getItem(int position) {
       return comicsCache.get((int) getItemId(position));
     }
 

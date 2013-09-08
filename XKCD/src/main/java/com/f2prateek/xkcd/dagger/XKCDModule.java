@@ -36,17 +36,20 @@ import javax.inject.Singleton;
 import retrofit.RestAdapter;
 
 @Module(
+    complete = false,
+    library = false,
     injects = {
         XKCDApplication.class, BaseActivity.class, MainActivity.class, ViewComicActivity.class,
         BaseFragment.class, BaseListFragment.class, ComicRetrieverService.class,
         ComicListFragment.class, ComicViewFragment.class
-    }, complete = false)
-public class CouchPotatoModule {
+    })
+public class XKCDModule {
   @Provides @Singleton Bus provideOttoBus() {
     return new Bus();
   }
 
-  @Provides @Named("comic_count") int provideComicCount(SharedPreferences sharedPreferences) {
+  @Provides @Named("comic_count")
+  int provideComicCount(@ForApplication SharedPreferences sharedPreferences) {
     return sharedPreferences.getInt(AppConstansts.KEY_COMIC_COUNT, -1);
   }
 
