@@ -16,14 +16,18 @@
 
 package com.f2prateek.xkcd.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import butterknife.InjectView;
+import com.f2prateek.xkcd.AppConstansts;
 import com.f2prateek.xkcd.R;
 import com.f2prateek.xkcd.model.Comic;
 import com.f2prateek.xkcd.ui.base.BaseFragment;
@@ -59,6 +63,30 @@ public class ComicViewFragment extends BaseFragment {
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     super.onCreateOptionsMenu(menu, inflater);
     inflater.inflate(R.menu.comic_fragment, menu);
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_comic_explanation:
+        openUrl(AppConstansts.getExplationUrl(comic.getNum()));
+        return true;
+      case R.id.action_comic_info:
+        return true;
+      case R.id.action_comic_link:
+        openUrl(AppConstansts.getComicUrl(comic.getNum()));
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
+  public void openUrl(String url) {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+    startActivity(intent);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,

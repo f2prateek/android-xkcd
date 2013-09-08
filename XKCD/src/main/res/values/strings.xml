@@ -20,5 +20,7 @@
   <string name="app_name">XKCD</string>
   <string name="action_settings">Settings</string>
   <string name="action_info">Info</string>
+  <string name="action_explanation">Explain</string>
+  <string name="action_link">Comic URL</string>
 
 </resources>

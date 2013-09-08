@@ -20,11 +20,13 @@
   <item android:id="@+id/action_comic_info"
       android:title="@string/action_info"
       android:icon="@drawable/ic_action_info"
-      android:orderInCategory="100"
-      android:showAsAction="never"/>
-  <item android:id="@+id/action_comic_info"
-      android:title="@string/action_info"
-      android:icon="@drawable/ic_action_info"
-      android:orderInCategory="100"
-      android:showAsAction="never"/>
+      android:orderInCategory="1"/>
+  <item android:id="@+id/action_comic_explanation"
+      android:title="@string/action_explanation"
+      android:icon="@drawable/ic_action_help"
+      android:orderInCategory="2"/>
+  <item android:id="@+id/action_comic_link"
+      android:title="@string/action_link"
+      android:icon="@drawable/ic_action_link"
+      android:orderInCategory="3"/>
 </menu>
