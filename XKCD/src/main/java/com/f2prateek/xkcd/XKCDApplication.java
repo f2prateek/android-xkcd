@@ -44,7 +44,7 @@ public class XKCDApplication extends Application {
   }
 
   protected List<Object> getModules() {
-    return Arrays.<Object>asList(new AndroidModule(this), new CouchPotatoModule());
+    return Arrays.<Object>asList(new AndroidModule(this), new XKCDModule());
   }
 
   @Produce public ComicCountEvent produceComicCount() {

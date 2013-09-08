@@ -40,7 +40,7 @@ import retrofit.RestAdapter;
         ComicViewFragment.class
     },
     complete = false)
-public class CouchPotatoModule {
+public class XKCDModule {
 
   @Provides @Singleton Bus provideOttoBus() {
     return new Bus();
