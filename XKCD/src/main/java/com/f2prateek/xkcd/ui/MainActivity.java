@@ -18,10 +18,15 @@ package com.f2prateek.xkcd.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import com.f2prateek.xkcd.ComicCountEvent;
 import com.f2prateek.xkcd.ui.base.BaseActivity;
+import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 public class MainActivity extends BaseActivity {
+  @Inject @Named("comic_count") int comicCount;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +42,9 @@ public class MainActivity extends BaseActivity {
     Intent viewComic = new Intent(this, ViewComicActivity.class);
     viewComic.putExtra(ViewComicActivity.COMIC_EXTRA_ARG, onComicClickedEvent.comic);
     startActivity(viewComic);
+  }
+
+  @Produce public ComicCountEvent produceComicCount() {
+    return new ComicCountEvent(comicCount);
   }
 }

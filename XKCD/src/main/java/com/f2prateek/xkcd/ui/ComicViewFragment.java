@@ -49,6 +49,7 @@ public class ComicViewFragment extends BaseFragment {
     super.onCreate(savedInstanceState);
     comic = getArguments().getParcelable(COMIC_EXTRA_ARG);
     setHasOptionsMenu(true);
+    getActivity().getActionBar().setTitle(comic.getSafe_title());
   }
 
   @Override public void onPrepareOptionsMenu(Menu menu) {

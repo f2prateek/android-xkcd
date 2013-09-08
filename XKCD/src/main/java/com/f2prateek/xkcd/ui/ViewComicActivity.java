@@ -33,5 +33,8 @@ public class ViewComicActivity extends BaseActivity {
       ComicViewFragment fragment = ComicViewFragment.newInstance(comic);
       getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
+
+    getActionBar().setDisplayHomeAsUpEnabled(true);
+    getActionBar().setDisplayShowHomeEnabled(false);
   }
 }
