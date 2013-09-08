@@ -16,6 +16,7 @@
 
 package com.f2prateek.xkcd.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,15 +26,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import butterknife.InjectView;
 import com.f2prateek.xkcd.R;
+import com.f2prateek.xkcd.dagger.ForActivity;
 import com.f2prateek.xkcd.model.Comic;
 import com.f2prateek.xkcd.ui.base.BaseFragment;
 import com.squareup.picasso.Picasso;
+import javax.inject.Inject;
 
 /** A fragment to display a single comic. */
 public class ComicViewFragment extends BaseFragment {
 
   public static final String COMIC_EXTRA_ARG = "com.f2prateek.xkcd.COMIC";
 
+  @Inject ActivityTitleController titleController;
+  @Inject @ForActivity Context context;
   @InjectView(R.id.comic_image) ImageView comic_image;
   private Comic comic;
 
@@ -60,6 +65,11 @@ public class ComicViewFragment extends BaseFragment {
     inflater.inflate(R.menu.comic_fragment, menu);
   }
 
+  @Override public void onResume() {
+    super.onResume();
+    titleController.setTitle("Home Fragment");
+  }
+
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     return inflater.inflate(R.layout.comic_fragment, container, false);
@@ -67,6 +77,6 @@ public class ComicViewFragment extends BaseFragment {
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    Picasso.with(getActivity()).load(comic.getImg()).into(comic_image);
+    Picasso.with(context).load(comic.getImg()).into(comic_image);
   }
 }

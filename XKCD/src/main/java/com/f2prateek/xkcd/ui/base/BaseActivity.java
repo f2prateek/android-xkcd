@@ -23,7 +23,11 @@ import android.view.MenuItem;
 import android.view.Window;
 import butterknife.Views;
 import com.f2prateek.xkcd.XKCDApplication;
+import com.f2prateek.xkcd.dagger.ActivityModule;
 import com.squareup.otto.Bus;
+import dagger.ObjectGraph;
+import java.util.Arrays;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -33,14 +37,39 @@ import javax.inject.Inject;
 public abstract class BaseActivity extends Activity {
 
   @Inject Bus bus;
+  private ObjectGraph activityGraph;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    activityGraph = ((XKCDApplication) getApplication()).plus(getModules().toArray());
+
     // Perform injection so that when this call returns all dependencies will be available for use.
-    ((XKCDApplication) getApplication()).inject(this);
+    activityGraph.inject(this);
 
     // All activities will require this
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+  }
+
+  @Override protected void onDestroy() {
+    // Eagerly clear the reference to the activity graph to allow it to be garbage collected as
+    // soon as possible.
+    activityGraph = null;
+    super.onDestroy();
+  }
+
+  /**
+   * A list of modules to use for the individual activity graph. Subclasses can override this
+   * method to provide additional modules provided they call and include the modules returned by
+   * calling {@code super.getModules()}.
+   */
+  protected List<Object> getModules() {
+    return Arrays.<Object>asList(new ActivityModule(this));
+  }
+
+  /** Inject the supplied {@code object} using the activity-specific graph. */
+  public void inject(Object object) {
+    activityGraph.inject(object);
   }
 
   @Override public void setContentView(int layoutResID) {

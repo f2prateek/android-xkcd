@@ -20,21 +20,19 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
 import butterknife.Views;
-import com.f2prateek.xkcd.XKCDApplication;
 import com.squareup.otto.Bus;
 import javax.inject.Inject;
 
 /**
  * A base fragment class that automatically injects itself into the {@link dagger.ObjectGraph}.
- * Does NOT setup for ButterKnife.
  */
 public class BaseFragment extends Fragment {
-  @Inject Bus bus;
+  @Inject public Bus bus;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     // Perform injection so that when this call returns all dependencies will be available for use.
-    ((XKCDApplication) getActivity().getApplication()).inject(this);
+    ((BaseActivity) getActivity()).inject(this);
   }
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {

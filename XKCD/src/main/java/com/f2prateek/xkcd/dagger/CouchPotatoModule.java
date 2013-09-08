@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-package com.f2prateek.xkcd;
+package com.f2prateek.xkcd.dagger;
 
 import android.content.SharedPreferences;
-import android.content.res.Resources;
+import com.f2prateek.xkcd.AppConstansts;
+import com.f2prateek.xkcd.XKCDApi;
+import com.f2prateek.xkcd.XKCDApplication;
 import com.f2prateek.xkcd.service.ComicRetrieverService;
 import com.f2prateek.xkcd.ui.ComicListFragment;
 import com.f2prateek.xkcd.ui.ComicViewFragment;
@@ -35,19 +37,13 @@ import retrofit.RestAdapter;
 
 @Module(
     injects = {
-        BaseActivity.class, MainActivity.class, ViewComicActivity.class, BaseFragment.class,
-        BaseListFragment.class, ComicRetrieverService.class, ComicListFragment.class,
-        ComicViewFragment.class
-    },
-    complete = false)
+        XKCDApplication.class, BaseActivity.class, MainActivity.class, ViewComicActivity.class,
+        BaseFragment.class, BaseListFragment.class, ComicRetrieverService.class,
+        ComicListFragment.class, ComicViewFragment.class
+    }, complete = false)
 public class CouchPotatoModule {
-
   @Provides @Singleton Bus provideOttoBus() {
     return new Bus();
-  }
-
-  @Provides @Named("default_animation_time") int provideDefaultAnimationTime(Resources resources) {
-    return resources.getInteger(R.integer.config_defaultAnimationTime);
   }
 
   @Provides @Named("comic_count") int provideComicCount(SharedPreferences sharedPreferences) {

@@ -18,7 +18,8 @@ package com.f2prateek.xkcd.ui.base;
 
 import android.app.ListFragment;
 import android.os.Bundle;
-import com.f2prateek.xkcd.XKCDApplication;
+import android.view.View;
+import butterknife.Views;
 import com.squareup.otto.Bus;
 import javax.inject.Inject;
 
@@ -31,7 +32,12 @@ public class BaseListFragment extends ListFragment {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     // Perform injection so that when this call returns all dependencies will be available for use.
-    ((XKCDApplication) getActivity().getApplication()).inject(this);
+    ((BaseActivity) getActivity()).inject(this);
+  }
+
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    Views.inject(this, view);
   }
 
   @Override public void onResume() {

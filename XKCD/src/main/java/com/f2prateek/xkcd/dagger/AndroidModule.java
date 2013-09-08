@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.f2prateek.xkcd;
+package com.f2prateek.xkcd.dagger;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.preference.PreferenceManager;
+import com.f2prateek.xkcd.XKCDApplication;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -36,12 +36,8 @@ public class AndroidModule {
     this.application = application;
   }
 
-  @Provides @Singleton Context provideApplicationContext() {
+  @Provides @Singleton @ForApplication Context provideApplicationContext() {
     return application;
-  }
-
-  @Provides @Singleton Resources provideResources() {
-    return application.getResources();
   }
 
   @Provides @Singleton SharedPreferences provideSharedPreferences() {
