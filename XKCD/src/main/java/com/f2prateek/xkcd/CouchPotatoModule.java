@@ -35,8 +35,8 @@ import retrofit.RestAdapter;
 
 @Module(
     injects = {
-        BaseActivity.class, MainActivity.class, ViewComicActivity.class, BaseFragment.class,
-        BaseListFragment.class, ComicRetrieverService.class, ComicListFragment.class,
+        XKCDApplication.class, BaseActivity.class, MainActivity.class, ViewComicActivity.class,
+        BaseFragment.class, BaseListFragment.class, ComicRetrieverService.class, ComicListFragment.class,
         ComicViewFragment.class
     },
     complete = false)
