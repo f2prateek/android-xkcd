@@ -28,7 +28,7 @@ import javax.inject.Singleton;
  * A module for Android-specific dependencies which require a {@link android.content.Context} or
  * {@link android.app.Application} to create.
  */
-@Module(complete = true, library = true)
+@Module(library = true)
 public class AndroidModule {
   private final XKCDApplication application;
 

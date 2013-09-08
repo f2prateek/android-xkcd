@@ -28,7 +28,7 @@ import javax.inject.Singleton;
  * safely create singletons using the activity instance because ths entire object graph will only
  * ever exist inside of that activity.
  */
-@Module(complete = true, library = false)
+@Module(complete = false, library = true)
 public class ActivityModule {
   private final BaseActivity activity;
 
@@ -43,9 +43,5 @@ public class ActivityModule {
    */
   @Provides @Singleton @ForActivity Context provideActivityContext() {
     return activity;
-  }
-
-  @Provides @Singleton ActivityTitleController provideTitleController() {
-    return new ActivityTitleController(activity);
   }
 }

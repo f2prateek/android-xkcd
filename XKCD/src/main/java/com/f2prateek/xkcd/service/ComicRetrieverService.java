@@ -41,7 +41,7 @@ public class ComicRetrieverService extends Service implements Callback<Comic> {
   @Override
   public void onCreate() {
     super.onCreate();
-    ((XKCDApplication) getApplication()).inject(this);
+    ((XKCDApplication) getApplication()).getApplicationGraph().inject(this);
     bus.register(this);
   }
 

@@ -38,7 +38,6 @@ public class ComicViewFragment extends BaseFragment {
   public static final String COMIC_EXTRA_ARG = "com.f2prateek.xkcd.COMIC";
 
   @Inject @ForActivity Context context;
-  @Inject ActivityTitleController titleController;
   @InjectView(R.id.comic_image) ImageView comic_image;
   private Comic comic;
 
@@ -67,7 +66,7 @@ public class ComicViewFragment extends BaseFragment {
 
   @Override public void onResume() {
     super.onResume();
-    titleController.setTitle("Home Fragment");
+    //titleController.setTitle("Home Fragment");
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,

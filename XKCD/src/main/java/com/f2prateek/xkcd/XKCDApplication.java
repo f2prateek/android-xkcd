@@ -31,11 +31,11 @@ import javax.inject.Named;
 
 public class XKCDApplication extends Application {
   @Inject @Named("comic_count") int comicCount;
-
   private ObjectGraph applicationGraph;
 
   @Override public void onCreate() {
     super.onCreate();
+
     applicationGraph = ObjectGraph.create(getModules().toArray());
     applicationGraph.inject(this);
 
@@ -53,11 +53,7 @@ public class XKCDApplication extends Application {
     return new ComicCountEvent(comicCount);
   }
 
-  public void inject(Object object) {
-    applicationGraph.inject(object);
-  }
-
-  public ObjectGraph plus(Object... objects) {
-    return applicationGraph.plus(objects);
+  public ObjectGraph getApplicationGraph() {
+    return applicationGraph;
   }
 }
