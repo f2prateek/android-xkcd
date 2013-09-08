@@ -18,6 +18,8 @@ package com.f2prateek.xkcd.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -46,6 +48,16 @@ public class ComicViewFragment extends BaseFragment {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     comic = getArguments().getParcelable(COMIC_EXTRA_ARG);
+    setHasOptionsMenu(true);
+  }
+
+  @Override public void onPrepareOptionsMenu(Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+  }
+
+  @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.comic_fragment, menu);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,

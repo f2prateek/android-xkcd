@@ -19,17 +19,23 @@ package com.f2prateek.xkcd;
 import android.app.Application;
 import android.content.Intent;
 import com.f2prateek.xkcd.service.ComicRetrieverService;
+import com.squareup.otto.Produce;
 import com.squareup.picasso.Picasso;
 import dagger.ObjectGraph;
 import java.util.Arrays;
 import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 public class XKCDApplication extends Application {
+  @Inject @Named("comic_count") int comicCount;
+
   private ObjectGraph applicationGraph;
 
   @Override public void onCreate() {
     super.onCreate();
     applicationGraph = ObjectGraph.create(getModules().toArray());
+    applicationGraph.inject(this);
 
     Picasso.with(this).setDebugging(BuildConfig.DEBUG);
 
@@ -39,6 +45,10 @@ public class XKCDApplication extends Application {
 
   protected List<Object> getModules() {
     return Arrays.<Object>asList(new AndroidModule(this), new CouchPotatoModule());
+  }
+
+  @Produce public ComicCountEvent produceComicCount() {
+    return new ComicCountEvent(comicCount);
   }
 
   public void inject(Object object) {
