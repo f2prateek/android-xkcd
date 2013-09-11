@@ -1,1 +1,1 @@
-include ':XKCD'
+include ':XKCD', ':libraries:smoothie'
