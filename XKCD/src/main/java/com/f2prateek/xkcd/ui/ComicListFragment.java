@@ -93,7 +93,7 @@ public class ComicListFragment extends BaseListFragment {
 
     @Override public void bindView(int position, int type, View view) {
       final ViewHolder holder = (ViewHolder) view.getTag();
-      long comicNumber = getItemId(position);
+      int comicNumber = (int) getItemId(position);
       xkcdApi.getComic(comicNumber, new Callback<Comic>() {
         @Override public void success(Comic comic, Response response) {
           comicsCache.put(comic.getNum(), comic);

@@ -30,7 +30,7 @@ public class ViewComicActivity extends BaseActivity {
 
     if (savedInstanceState == null) {
       Comic comic = getIntent().getExtras().getParcelable(COMIC_EXTRA_ARG);
-      ComicViewFragment fragment = ComicViewFragment.newInstance(comic);
+      ComicViewFragment fragment = ComicViewFragment.newInstance(comic.getNum());
       getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
 

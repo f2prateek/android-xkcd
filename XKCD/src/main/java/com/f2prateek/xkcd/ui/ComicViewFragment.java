@@ -29,44 +29,54 @@ import android.widget.ImageView;
 import butterknife.InjectView;
 import com.f2prateek.xkcd.AppConstansts;
 import com.f2prateek.xkcd.R;
+import com.f2prateek.xkcd.XKCDApi;
 import com.f2prateek.xkcd.model.Comic;
 import com.f2prateek.xkcd.ui.base.BaseFragment;
+import com.f2prateek.xkcd.util.Ln;
 import com.squareup.picasso.Picasso;
+import javax.inject.Inject;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /** A fragment to display a single comic. */
-public class ComicViewFragment extends BaseFragment {
+public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
 
   public static final String COMIC_EXTRA_ARG = "com.f2prateek.xkcd.COMIC";
 
+  @Inject XKCDApi xkcdApi;
   @InjectView(R.id.comic_image) ImageView comic_image;
+  private int comicNumber;
   private Comic comic;
 
-  public static ComicViewFragment newInstance(Comic comic) {
+  public static ComicViewFragment newInstance(int comicNumber) {
     ComicViewFragment fragment = new ComicViewFragment();
     Bundle args = new Bundle();
-    args.putParcelable(COMIC_EXTRA_ARG, comic);
+    args.putInt(COMIC_EXTRA_ARG, comicNumber);
     fragment.setArguments(args);
     return fragment;
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    comic = getArguments().getParcelable(COMIC_EXTRA_ARG);
-    setHasOptionsMenu(true);
-    getActivity().getActionBar().setTitle(comic.getSafe_title());
+    comicNumber = getArguments().getInt(COMIC_EXTRA_ARG);
+    xkcdApi.getComic(comicNumber, this);
   }
 
-  @Override public void onPrepareOptionsMenu(Menu menu) {
-    super.onPrepareOptionsMenu(menu);
+  @Override public void success(Comic comic, Response response) {
+    this.comic = comic;
+    setHasOptionsMenu(true);
+    getActivity().getActionBar().setTitle(comic.getSafe_title());
+    Picasso.with(getActivity()).load(comic.getImg()).into(comic_image);
+  }
+
+  @Override public void failure(RetrofitError retrofitError) {
+    Ln.e(retrofitError.getCause());
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     super.onCreateOptionsMenu(menu, inflater);
     inflater.inflate(R.menu.comic_fragment, menu);
-  }
-
-  @Override public void onResume() {
-    super.onResume();
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -92,10 +102,5 @@ public class ComicViewFragment extends BaseFragment {
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     return inflater.inflate(R.layout.comic_fragment, container, false);
-  }
-
-  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    Picasso.with(getActivity()).load(comic.getImg()).into(comic_image);
   }
 }
