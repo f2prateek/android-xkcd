@@ -18,6 +18,7 @@ package com.f2prateek.xkcd.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import java.util.GregorianCalendar;
 
 //An object that represents a single Json object from XKCD. http://xkcd.com/info.0.json
 public class Comic implements Parcelable {
@@ -32,10 +33,10 @@ public class Comic implements Parcelable {
   private String alt;
   private String img;
   private String title;
-  private String day;
+  private int day;
 
   public Comic(int month, int num, String link, int year, String news, String safe_title,
-      String transcript, String alt, String img, String title, String day) {
+      String transcript, String alt, String img, String title, int day) {
     this.month = month;
     this.num = num;
     this.link = link;
@@ -89,8 +90,12 @@ public class Comic implements Parcelable {
     return title;
   }
 
-  public String getDay() {
+  public int getDay() {
     return day;
+  }
+
+  public long getTimeInMillis() {
+    return new GregorianCalendar(year, month, day).getTimeInMillis();
   }
 
   protected Comic(Parcel in) {
@@ -104,7 +109,7 @@ public class Comic implements Parcelable {
     alt = in.readString();
     img = in.readString();
     title = in.readString();
-    day = in.readString();
+    day = in.readInt();
   }
 
   public int describeContents() {
@@ -122,7 +127,7 @@ public class Comic implements Parcelable {
     dest.writeString(alt);
     dest.writeString(img);
     dest.writeString(title);
-    dest.writeString(day);
+    dest.writeInt(day);
   }
 
   public static final Creator<Comic> CREATOR = new Creator<Comic>() {

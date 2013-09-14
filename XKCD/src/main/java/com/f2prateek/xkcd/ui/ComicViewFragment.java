@@ -19,6 +19,7 @@ package com.f2prateek.xkcd.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import butterknife.InjectView;
 import com.f2prateek.xkcd.AppConstansts;
 import com.f2prateek.xkcd.R;
@@ -46,6 +48,11 @@ public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
 
   @Inject XKCDApi xkcdApi;
   @InjectView(R.id.comic_image) ImageView comic_image;
+  @InjectView(R.id.comic_info_container) View comic_info_container;
+  @InjectView(R.id.comic_info_title) TextView comic_info_title;
+  @InjectView(R.id.comic_info_date) TextView comic_info_date;
+  @InjectView(R.id.comic_info_transcript) TextView comic_info_transcript;
+
   private int comicNumber;
   private Comic comic;
 
@@ -68,6 +75,11 @@ public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
     setHasOptionsMenu(true);
     getActivity().getActionBar().setTitle(comic.getSafe_title());
     Picasso.with(getActivity()).load(comic.getImg()).into(comic_image);
+    comic_info_title.setText(comic.getTitle());
+    comic_info_date.setText(
+        DateUtils.getRelativeTimeSpanString(comic.getTimeInMillis(), System.currentTimeMillis(),
+            DateUtils.DAY_IN_MILLIS));
+    comic_info_transcript.setText(comic.getTranscript());
   }
 
   @Override public void failure(RetrofitError retrofitError) {
@@ -85,6 +97,7 @@ public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
         openUrl(AppConstansts.getExplationUrl(comic.getNum()));
         return true;
       case R.id.action_comic_info:
+        showComicInfo();
         return true;
       case R.id.action_comic_link:
         openUrl(AppConstansts.getComicUrl(comic.getNum()));
@@ -94,6 +107,16 @@ public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
     }
   }
 
+  // Show some information about the current comic
+  public void showComicInfo() {
+    if (comic_info_container.getVisibility() == View.VISIBLE) {
+      comic_info_container.setVisibility(View.GONE);
+    } else {
+      comic_info_container.setVisibility(View.VISIBLE);
+    }
+  }
+
+  // Opens an activity to view the given url
   public void openUrl(String url) {
     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     startActivity(intent);

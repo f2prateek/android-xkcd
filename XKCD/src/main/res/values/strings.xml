@@ -22,5 +22,8 @@
   <string name="action_info">Info</string>
   <string name="action_explanation">Explain comic</string>
   <string name="action_link">View on web</string>
+  <string name="comic_info_title_label">Title</string>
+  <string name="comic_info_date_label">Date</string>
+  <string name="comic_info_transcript_label">Transcript</string>
 
 </resources>
