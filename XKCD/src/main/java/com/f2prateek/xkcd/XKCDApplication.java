@@ -18,6 +18,7 @@ package com.f2prateek.xkcd;
 
 import android.app.Application;
 import android.content.Intent;
+import com.crashlytics.android.Crashlytics;
 import com.f2prateek.xkcd.service.ComicRetrieverService;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Produce;
@@ -42,6 +43,9 @@ public class XKCDApplication extends Application {
     bus.register(this);
 
     Picasso.with(this).setDebugging(BuildConfig.DEBUG);
+    if (!BuildConfig.DEBUG) {
+      Crashlytics.start(getApplicationContext());
+    }
 
     Intent updateComicService = new Intent(this, ComicRetrieverService.class);
     startService(updateComicService);
