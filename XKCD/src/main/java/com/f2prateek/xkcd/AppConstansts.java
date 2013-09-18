@@ -28,11 +28,11 @@ public class AppConstansts {
   private static final String BASE_EXPLANATION_URL =
       "http://www.explainxkcd.com/wiki/index.php?title=&d";
 
-  public static final String getComicUrl(int num) {
+  public static String getComicUrl(int num) {
     return String.format(BASE_COMIC_URL, num);
   }
 
-  public static final String getExplationUrl(int num) {
+  public static String getExplationUrl(int num) {
     return String.format(BASE_EXPLANATION_URL, num);
   }
 }
