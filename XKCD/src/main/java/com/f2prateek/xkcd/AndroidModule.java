@@ -40,11 +40,11 @@ public class AndroidModule {
     return application;
   }
 
-  @Provides @Singleton Resources provideResources() {
-    return application.getResources();
+  @Provides @Singleton Resources provideResources(final Context context) {
+    return context.getResources();
   }
 
-  @Provides @Singleton SharedPreferences provideSharedPreferences() {
-    return PreferenceManager.getDefaultSharedPreferences(application);
+  @Provides @Singleton SharedPreferences provideSharedPreferences(final Context context) {
+    return PreferenceManager.getDefaultSharedPreferences(context);
   }
 }
