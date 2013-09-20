@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
+import com.crashlytics.android.Crashlytics;
 import com.f2prateek.xkcd.AppConstansts;
 import com.f2prateek.xkcd.R;
 import com.f2prateek.xkcd.XKCDApi;
@@ -83,7 +84,9 @@ public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
   }
 
   @Override public void failure(RetrofitError retrofitError) {
-    Ln.e(retrofitError.getCause());
+    Throwable error = retrofitError.getCause();
+    Crashlytics.logException(error);
+    Ln.e(error);
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
