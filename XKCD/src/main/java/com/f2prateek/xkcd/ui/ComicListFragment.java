@@ -26,6 +26,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.Views;
+import com.crashlytics.android.Crashlytics;
 import com.f2prateek.xkcd.ComicCountEvent;
 import com.f2prateek.xkcd.R;
 import com.f2prateek.xkcd.XKCDApi;
@@ -91,19 +92,30 @@ public class ComicListFragment extends BaseListFragment {
       return view;
     }
 
-    @Override public void bindView(int position, int type, View view) {
-      final ViewHolder holder = (ViewHolder) view.getTag();
+    @Override public void bindView(int position, int type, final View view) {
       int comicNumber = (int) getItemId(position);
-      xkcdApi.getComic(comicNumber, new Callback<Comic>() {
-        @Override public void success(Comic comic, Response response) {
-          comicsCache.put(comic.getNum(), comic);
-          holder.title.setText("# " + comic.getNum() + ". " + comic.getSafe_title());
-        }
+      Comic comic = comicsCache.get(comicNumber);
+      if (comic == null) {
+        xkcdApi.getComic(comicNumber, new Callback<Comic>() {
+          @Override public void success(Comic comic, Response response) {
+            comicsCache.put(comic.getNum(), comic);
+            bindComic(view, comic);
+          }
 
-        @Override public void failure(RetrofitError retrofitError) {
-          Ln.e(retrofitError.getCause());
-        }
-      });
+          @Override public void failure(RetrofitError retrofitError) {
+            Throwable error = retrofitError.getCause();
+            Crashlytics.logException(error);
+            Ln.e(error);
+          }
+        });
+      } else {
+        bindComic(view, comic);
+      }
+    }
+
+    public void bindComic(View view, Comic comic) {
+      final ViewHolder holder = (ViewHolder) view.getTag();
+      holder.title.setText("# " + comic.getNum() + ". " + comic.getSafe_title());
     }
 
     @Override public int getCount() {
