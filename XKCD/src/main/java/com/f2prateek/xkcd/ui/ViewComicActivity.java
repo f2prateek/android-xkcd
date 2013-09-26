@@ -43,6 +43,9 @@ public class ViewComicActivity extends BaseActivity {
   @Subscribe
   public void onShowComicInfo(ViewComicFragment.OnShowComicInfoEvent onShowComicInfoEvent) {
     ViewComicInfoFragment fragment = ViewComicInfoFragment.newInstance(onShowComicInfoEvent.comic);
-    getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+    getFragmentManager().beginTransaction()
+        .replace(android.R.id.content, fragment)
+        .addToBackStack("info")
+        .commit();
   }
 }
