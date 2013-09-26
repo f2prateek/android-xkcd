@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity {
     }
   }
 
+  // TODO : dyanamic for screen size
   @Subscribe public void onComicClicked(ComicListFragment.OnComicClickedEvent onComicClickedEvent) {
     Intent viewComic = new Intent(this, ViewComicActivity.class);
     viewComic.putExtra(ViewComicActivity.COMIC_EXTRA_ARG, onComicClickedEvent.comic);

@@ -19,10 +19,11 @@ package com.f2prateek.xkcd.ui;
 import android.os.Bundle;
 import com.f2prateek.xkcd.model.Comic;
 import com.f2prateek.xkcd.ui.base.BaseActivity;
+import com.squareup.otto.Subscribe;
 
 public class ViewComicActivity extends BaseActivity {
 
-  public static final String COMIC_EXTRA_ARG = ComicViewFragment.COMIC_EXTRA_ARG;
+  public static final String COMIC_EXTRA_ARG = "com.f2prateek.xkcd.COMIC";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,18 @@ public class ViewComicActivity extends BaseActivity {
 
     if (savedInstanceState == null) {
       Comic comic = getIntent().getExtras().getParcelable(COMIC_EXTRA_ARG);
-      ComicViewFragment fragment = ComicViewFragment.newInstance(comic.getNum());
+      ViewComicFragment fragment = ViewComicFragment.newInstance(comic);
       getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
 
     getActionBar().setDisplayHomeAsUpEnabled(true);
     getActionBar().setDisplayShowHomeEnabled(false);
+  }
+
+  // TODO : dyanamic for screen size
+  @Subscribe
+  public void onShowComicInfo(ViewComicFragment.OnShowComicInfoEvent onShowComicInfoEvent) {
+    ViewComicInfoFragment fragment = ViewComicInfoFragment.newInstance(onShowComicInfoEvent.comic);
+    getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
   }
 }

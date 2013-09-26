@@ -19,7 +19,6 @@ package com.f2prateek.xkcd.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,66 +26,48 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import butterknife.InjectView;
-import com.crashlytics.android.Crashlytics;
 import com.f2prateek.xkcd.AppConstansts;
 import com.f2prateek.xkcd.R;
-import com.f2prateek.xkcd.XKCDApi;
 import com.f2prateek.xkcd.model.Comic;
 import com.f2prateek.xkcd.ui.base.BaseFragment;
-import com.f2prateek.xkcd.util.Ln;
 import com.squareup.picasso.Picasso;
-import javax.inject.Inject;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /** A fragment to display a single comic. */
-public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
+public class ViewComicFragment extends BaseFragment {
 
-  public static final String COMIC_EXTRA_ARG = "com.f2prateek.xkcd.COMIC";
+  private static final String COMIC_EXTRA_ARG = "comic";
 
-  @Inject XKCDApi xkcdApi;
   @InjectView(R.id.comic_image) ImageView comic_image;
-  @InjectView(R.id.comic_info_container) View comic_info_container;
-  @InjectView(R.id.comic_info_title) TextView comic_info_title;
-  @InjectView(R.id.comic_info_date) TextView comic_info_date;
-  @InjectView(R.id.comic_info_transcript) TextView comic_info_transcript;
-
-  private int comicNumber;
   private Comic comic;
 
-  public static ComicViewFragment newInstance(int comicNumber) {
-    ComicViewFragment fragment = new ComicViewFragment();
+  public static ViewComicFragment newInstance(Comic comic) {
+    ViewComicFragment fragment = new ViewComicFragment();
     Bundle args = new Bundle();
-    args.putInt(COMIC_EXTRA_ARG, comicNumber);
+    args.putParcelable(COMIC_EXTRA_ARG, comic);
     fragment.setArguments(args);
     return fragment;
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    comicNumber = getArguments().getInt(COMIC_EXTRA_ARG);
-    xkcdApi.getComic(comicNumber, this);
+    comic = getArguments().getParcelable(COMIC_EXTRA_ARG);
   }
 
-  @Override public void success(Comic comic, Response response) {
-    this.comic = comic;
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.comic_fragment, container, false);
+  }
+
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    bindView(comic);
+  }
+
+  private void bindView(Comic comic) {
     setHasOptionsMenu(true);
     getActivity().getActionBar().setTitle(comic.getSafe_title());
     Picasso.with(getActivity()).load(comic.getImg()).into(comic_image);
-    comic_info_title.setText(comic.getTitle());
-    comic_info_date.setText(
-        DateUtils.getRelativeTimeSpanString(comic.getTimeInMillis(), System.currentTimeMillis(),
-            DateUtils.DAY_IN_MILLIS));
-    comic_info_transcript.setText(comic.getTranscript());
-  }
-
-  @Override public void failure(RetrofitError retrofitError) {
-    Throwable error = retrofitError.getCause();
-    Crashlytics.logException(error);
-    Ln.e(error);
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -112,11 +93,7 @@ public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
 
   // Show some information about the current comic
   public void showComicInfo() {
-    if (comic_info_container.getVisibility() == View.VISIBLE) {
-      comic_info_container.setVisibility(View.GONE);
-    } else {
-      comic_info_container.setVisibility(View.VISIBLE);
-    }
+    bus.post(new OnShowComicInfoEvent(comic));
   }
 
   // Opens an activity to view the given url
@@ -125,8 +102,11 @@ public class ComicViewFragment extends BaseFragment implements Callback<Comic> {
     startActivity(intent);
   }
 
-  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.comic_fragment, container, false);
+  public static class OnShowComicInfoEvent {
+    public final Comic comic;
+
+    public OnShowComicInfoEvent(Comic comic) {
+      this.comic = comic;
+    }
   }
 }

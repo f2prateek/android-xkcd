@@ -29,7 +29,7 @@ import javax.inject.Inject;
  * Does NOT setup for ButterKnife.
  */
 public class BaseFragment extends Fragment {
-  @Inject Bus bus;
+  @Inject public Bus bus;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

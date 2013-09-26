@@ -19,9 +19,10 @@ package com.f2prateek.xkcd;
 import android.content.SharedPreferences;
 import com.f2prateek.xkcd.service.ComicRetrieverService;
 import com.f2prateek.xkcd.ui.ComicListFragment;
-import com.f2prateek.xkcd.ui.ComicViewFragment;
 import com.f2prateek.xkcd.ui.MainActivity;
 import com.f2prateek.xkcd.ui.ViewComicActivity;
+import com.f2prateek.xkcd.ui.ViewComicFragment;
+import com.f2prateek.xkcd.ui.ViewComicInfoFragment;
 import com.f2prateek.xkcd.ui.base.BaseActivity;
 import com.f2prateek.xkcd.ui.base.BaseFragment;
 import com.f2prateek.xkcd.ui.base.BaseListFragment;
@@ -36,7 +37,7 @@ import retrofit.RestAdapter;
     injects = {
         XKCDApplication.class, BaseActivity.class, MainActivity.class, ViewComicActivity.class,
         BaseFragment.class, BaseListFragment.class, ComicRetrieverService.class,
-        ComicListFragment.class, ComicViewFragment.class
+        ComicListFragment.class, ViewComicFragment.class, ViewComicInfoFragment.class
     },
     complete = false)
 public class XKCDModule {
