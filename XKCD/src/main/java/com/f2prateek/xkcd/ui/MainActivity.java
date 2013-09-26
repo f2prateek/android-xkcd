@@ -28,13 +28,13 @@ public class MainActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
 
     if (savedInstanceState == null) {
-      ComicListFragment fragment = ComicListFragment.newInstance();
+      ListComicFragment fragment = ListComicFragment.newInstance();
       getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
   }
 
   // TODO : dyanamic for screen size
-  @Subscribe public void onComicClicked(ComicListFragment.OnComicClickedEvent onComicClickedEvent) {
+  @Subscribe public void onComicClicked(ListComicFragment.OnComicClickedEvent onComicClickedEvent) {
     Intent viewComic = new Intent(this, ViewComicActivity.class);
     viewComic.putExtra(ViewComicActivity.COMIC_EXTRA_ARG, onComicClickedEvent.comic);
     startActivity(viewComic);

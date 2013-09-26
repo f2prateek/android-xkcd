@@ -40,12 +40,12 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class ComicListFragment extends BaseListFragment {
+public class ListComicFragment extends BaseListFragment {
 
   @Inject XKCDApi xkcdApi;
 
-  public static ComicListFragment newInstance() {
-    ComicListFragment fragment = new ComicListFragment();
+  public static ListComicFragment newInstance() {
+    ListComicFragment fragment = new ListComicFragment();
     return fragment;
   }
 
