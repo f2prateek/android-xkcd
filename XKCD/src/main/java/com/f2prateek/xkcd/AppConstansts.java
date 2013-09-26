@@ -18,13 +18,13 @@ package com.f2prateek.xkcd;
 
 public class AppConstansts {
 
-  // This is the base url of an image, format with String.format
+  // This is used to store the number of comics available on the server
   public static final String KEY_COMIC_COUNT = "key_image_count";
 
-  // This is the base url of an image, format with String.format
+  // This is the base url of a comic, format with String.format
   private static final String BASE_COMIC_URL = "http://xkcd.com/%d";
 
-  // This is the base url of an image, format with String.format
+  // This is the base url of an explanation for the comic, format with String.format
   private static final String BASE_EXPLANATION_URL =
       "http://www.explainxkcd.com/wiki/index.php?title=&d";
 

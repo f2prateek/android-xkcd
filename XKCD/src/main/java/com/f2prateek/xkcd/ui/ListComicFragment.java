@@ -27,7 +27,7 @@ import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.Views;
 import com.crashlytics.android.Crashlytics;
-import com.f2prateek.xkcd.ComicCountEvent;
+import com.f2prateek.xkcd.ComicCountUpdatedEvent;
 import com.f2prateek.xkcd.R;
 import com.f2prateek.xkcd.XKCDApi;
 import com.f2prateek.xkcd.model.Comic;
@@ -54,9 +54,9 @@ public class ListComicFragment extends BaseListFragment {
     setRetainInstance(true);
   }
 
-  @Subscribe public void onComicCountUpdated(ComicCountEvent comicCountEvent) {
-    if (comicCountEvent.comicCount > 0) {
-      setListAdapter(new SimpleComicGridAdapter(getActivity(), comicCountEvent.comicCount));
+  @Subscribe public void onComicCountUpdated(ComicCountUpdatedEvent comicCountUpdatedEvent) {
+    if (comicCountUpdatedEvent.comicCount > 0) {
+      setListAdapter(new SimpleComicGridAdapter(getActivity(), comicCountUpdatedEvent.comicCount));
     }
   }
 

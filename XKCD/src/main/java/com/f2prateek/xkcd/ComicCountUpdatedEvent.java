@@ -16,10 +16,10 @@
 
 package com.f2prateek.xkcd;
 
-public class ComicCountEvent {
+public class ComicCountUpdatedEvent {
   public final int comicCount;
 
-  public ComicCountEvent(int comicCount) {
+  public ComicCountUpdatedEvent(int comicCount) {
     this.comicCount = comicCount;
   }
 }

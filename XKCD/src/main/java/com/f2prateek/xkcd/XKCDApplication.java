@@ -59,7 +59,7 @@ public class XKCDApplication extends Application {
     applicationGraph.inject(object);
   }
 
-  @Produce public ComicCountEvent produceComicCount() {
-    return new ComicCountEvent(comicCount);
+  @Produce public ComicCountUpdatedEvent produceComicCount() {
+    return new ComicCountUpdatedEvent(comicCount);
   }
 }

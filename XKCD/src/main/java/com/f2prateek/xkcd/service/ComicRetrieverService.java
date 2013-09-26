@@ -21,7 +21,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import com.f2prateek.xkcd.AppConstansts;
-import com.f2prateek.xkcd.ComicCountEvent;
+import com.f2prateek.xkcd.ComicCountUpdatedEvent;
 import com.f2prateek.xkcd.XKCDApi;
 import com.f2prateek.xkcd.XKCDApplication;
 import com.f2prateek.xkcd.model.Comic;
@@ -59,7 +59,7 @@ public class ComicRetrieverService extends Service implements Callback<Comic> {
     int retrieved_count = comic.getNum();
     if (old_count < retrieved_count) {
       sharedPreferences.edit().putInt(AppConstansts.KEY_COMIC_COUNT, retrieved_count).commit();
-      bus.post(new ComicCountEvent(retrieved_count));
+      bus.post(new ComicCountUpdatedEvent(retrieved_count));
     }
     stopSelf();
   }
@@ -67,6 +67,7 @@ public class ComicRetrieverService extends Service implements Callback<Comic> {
   @Override public void failure(RetrofitError retrofitError) {
     Ln.e(retrofitError.getCause());
     Ln.e("ComicRetrieverService failure");
+    stopSelf();
   }
 
   @Override public void onDestroy() {
