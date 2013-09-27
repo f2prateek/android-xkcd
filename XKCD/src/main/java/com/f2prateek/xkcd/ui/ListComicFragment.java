@@ -45,8 +45,7 @@ public class ListComicFragment extends BaseListFragment {
   @Inject XKCDApi xkcdApi;
 
   public static ListComicFragment newInstance() {
-    ListComicFragment fragment = new ListComicFragment();
-    return fragment;
+    return new ListComicFragment();
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
