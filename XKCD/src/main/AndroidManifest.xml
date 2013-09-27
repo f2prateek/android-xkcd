@@ -49,7 +49,7 @@
         android:name=".ui.ViewComicActivity"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.ViewComic"
-        android:parentActivityName=".ui.MainActivity">
+        android:parentActivityName="com.f2prateek.xkcd.ui.MainActivity">
     </activity>
 
     <service android:name=".service.ComicRetrieverService"/>
