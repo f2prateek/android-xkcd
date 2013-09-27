@@ -19,6 +19,9 @@ package com.f2prateek.xkcd.ui;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -48,6 +51,7 @@ public class ViewComicInfoFragment extends BaseFragment {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     comic = getArguments().getParcelable(COMIC_EXTRA_ARG);
+    setHasOptionsMenu(true);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,5 +70,27 @@ public class ViewComicInfoFragment extends BaseFragment {
         DateUtils.getRelativeTimeSpanString(comic.getTimeInMillis(), System.currentTimeMillis(),
             DateUtils.DAY_IN_MILLIS));
     comic_info_transcript.setText(comic.getTranscript());
+  }
+
+  @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.comic_info_fragment, menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_show_comic:
+        bus.post(new OnShowComicEvent(comic));
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+  public static class OnShowComicEvent {
+    public final Comic comic;
+
+    public OnShowComicEvent(Comic comic) {
+      this.comic = comic;
+    }
   }
 }

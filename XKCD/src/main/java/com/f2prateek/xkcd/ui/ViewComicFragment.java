@@ -52,6 +52,7 @@ public class ViewComicFragment extends BaseFragment {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     comic = getArguments().getParcelable(COMIC_EXTRA_ARG);
+    setHasOptionsMenu(true);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +66,6 @@ public class ViewComicFragment extends BaseFragment {
   }
 
   private void bindView(Comic comic) {
-    setHasOptionsMenu(true);
     getActivity().getActionBar().setTitle(comic.getSafe_title());
     Picasso.with(getActivity()).load(comic.getImg()).into(comic_image);
   }
