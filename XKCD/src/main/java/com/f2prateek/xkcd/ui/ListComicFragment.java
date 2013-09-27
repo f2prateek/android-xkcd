@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.Views;
@@ -88,6 +89,12 @@ public class ListComicFragment extends BaseListFragment {
       View view = inflater.inflate(R.layout.simple_comic_list_item, parent, false);
       ViewHolder holder = new ViewHolder(view);
       view.setTag(holder);
+      holder.title.setInAnimation(getContext(), android.R.anim.slide_in_left);
+      holder.title.setOutAnimation(getContext(), android.R.anim.slide_out_right);
+      // provide two TextViews for the TextSwitcher to use
+      // you can apply styles to these Views before adding
+      holder.title.addView(new TextView(getContext()));
+      holder.title.addView(new TextView(getContext()));
       return view;
     }
 
@@ -130,7 +137,7 @@ public class ListComicFragment extends BaseListFragment {
     }
 
     class ViewHolder {
-      @InjectView(R.id.comic_title) TextView title;
+      @InjectView(R.id.comic_title) TextSwitcher title;
 
       public ViewHolder(View view) {
         Views.inject(this, view);

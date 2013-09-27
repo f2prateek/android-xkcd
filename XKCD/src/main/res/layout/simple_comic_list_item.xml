@@ -16,7 +16,7 @@
   ~ limitations under the License.
   -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<TextSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:id="@+id/comic_title"/>
