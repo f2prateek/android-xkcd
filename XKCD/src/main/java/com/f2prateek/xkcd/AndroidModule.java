@@ -18,6 +18,8 @@ package com.f2prateek.xkcd;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import dagger.Module;
@@ -46,5 +48,13 @@ public class AndroidModule {
 
   @Provides @Singleton SharedPreferences provideSharedPreferences(final Context context) {
     return PreferenceManager.getDefaultSharedPreferences(context);
+  }
+
+  @Provides @Singleton PackageInfo providePackageInfo(final Context context) {
+    try {
+      return context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+    } catch (PackageManager.NameNotFoundException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

@@ -18,6 +18,9 @@ package com.f2prateek.xkcd.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import com.f2prateek.xkcd.R;
 import com.f2prateek.xkcd.ui.base.BaseActivity;
 import com.squareup.otto.Subscribe;
 
@@ -31,6 +34,23 @@ public class MainActivity extends BaseActivity {
       ListComicFragment fragment = ListComicFragment.newInstance();
       getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
     }
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    super.onCreateOptionsMenu(menu);
+    getMenuInflater().inflate(R.menu.activity_main, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.menu_about:
+        final AboutFragment fragment = new AboutFragment();
+        fragment.show(getFragmentManager(), "about");
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   // TODO : dyanamic for screen size
