@@ -17,19 +17,20 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/menu_item_share"
+      android:showAsAction="ifRoom"
+      android:title="@string/share"
+      android:actionProviderClass="android.widget.ShareActionProvider"/>
+  <item android:id="@+id/action_comic_link"
+      android:title="@string/action_link"
+      android:icon="@drawable/ic_action_link"
+      android:showAsAction="ifRoom"/>
   <item android:id="@+id/action_comic_info"
       android:title="@string/action_info"
       android:icon="@drawable/ic_action_info"
-      android:orderInCategory="1"
       android:showAsAction="ifRoom"/>
   <item android:id="@+id/action_comic_explanation"
       android:title="@string/action_explanation"
       android:icon="@drawable/ic_action_help"
-      android:orderInCategory="2"
-      android:showAsAction="ifRoom"/>
-  <item android:id="@+id/action_comic_link"
-      android:title="@string/action_link"
-      android:icon="@drawable/ic_action_link"
-      android:orderInCategory="3"
       android:showAsAction="ifRoom"/>
 </menu>

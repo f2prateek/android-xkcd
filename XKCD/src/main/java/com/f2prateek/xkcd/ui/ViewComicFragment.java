@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import butterknife.InjectView;
 import com.f2prateek.xkcd.AppConstansts;
 import com.f2prateek.xkcd.R;
@@ -73,6 +74,14 @@ public class ViewComicFragment extends BaseFragment {
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     super.onCreateOptionsMenu(menu, inflater);
     inflater.inflate(R.menu.comic_fragment, menu);
+    setShareIntent((ShareActionProvider) menu.findItem(R.id.menu_item_share).getActionProvider());
+  }
+
+  private void setShareIntent(ShareActionProvider shareActionProvider) {
+    Intent intent = new Intent(Intent.ACTION_SEND);
+    intent.setType("text/plain");
+    intent.putExtra(Intent.EXTRA_TEXT, AppConstansts.getComicUrl(comic.getNum()));
+    shareActionProvider.setShareIntent(intent);
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
