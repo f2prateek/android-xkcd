@@ -44,7 +44,7 @@ public class XKCDApplication extends Application {
 
     Picasso.with(this).setDebugging(BuildConfig.DEBUG);
     if (!BuildConfig.DEBUG) {
-      Crashlytics.start(getApplicationContext());
+      Crashlytics.start(this);
     }
 
     Intent updateComicService = new Intent(this, ComicRetrieverService.class);
