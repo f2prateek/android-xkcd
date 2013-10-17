@@ -33,9 +33,6 @@
       android:label="@string/app_name"
       android:theme="@style/AppTheme">
 
-    <meta-data android:name="com.crashlytics.ApiKey"
-        android:value="149aa6034d0aa2683ee06a826974c39c6031893f"/>
-
     <activity
         android:name=".ui.MainActivity"
         android:label="@string/app_name">

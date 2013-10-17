@@ -70,3 +70,6 @@ classes
 */seed.txt
 notes
 logs
+
+#Sensitive data
+XKCD/src/release/AndroidManifest.xml
